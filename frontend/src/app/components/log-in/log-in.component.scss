@@ -1,0 +1,12 @@
+.signout {
+    color: rgba(255, 254, 254, 0.87);
+    &:hover {
+      color: inherit;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    font-size: .9em;
+    color: white;
+  }
