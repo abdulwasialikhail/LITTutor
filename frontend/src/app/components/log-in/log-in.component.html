@@ -1,13 +1,5 @@
-<mat-toolbar *ngIf="loggedIn" color="primary" class="app-header">
-    
-    <mat-icon>menu</mat-icon>
-    <div>
-    <span>Hi Dave</span>
-    <span>&nbsp;&#124;&nbsp;</span>
-    <a (click)="logout()" class="signout" href="#">SIGN OUT</a>
-</div>
-    </mat-toolbar>
-<div *ngIf="!loggedIn" class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+<div *ngIf="(accountService.currentUser$ | async) === null" class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
 
     <mat-card class="box">
       <mat-card-header>

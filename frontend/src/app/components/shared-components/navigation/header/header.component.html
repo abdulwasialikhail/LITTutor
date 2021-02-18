@@ -1,0 +1,18 @@
+<mat-toolbar *ngIf="accountService.currentUser$ | async" color="primary" class="app-header">
+    
+      <!-- Hamburger menu -->
+  <div>
+    <button mat-icon-button
+            (click)="onToggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+
+  
+
+    <div>
+    <span>Hi User</span>
+    <span>&nbsp;&#124;&nbsp;</span>
+    <a (click)="logout()" class="signout" href="#">SIGN OUT</a>
+</div>
+    </mat-toolbar>

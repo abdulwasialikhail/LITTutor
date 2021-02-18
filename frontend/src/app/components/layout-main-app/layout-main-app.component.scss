@@ -1,0 +1,57 @@
+
+
+  /**
+  App Component has full viewport height
+ */
+
+ .all-wrap {
+  min-height: 100vh; // same height as browser window height
+}
+ 
+mat-sidenav {
+  width: 250px;
+}
+
+// Work around for sticky scrolling in firefox
+mat-sidenav-content {
+  overflow: hidden;
+}
+
+.spinner-height {
+  height: 500px;
+}
+
+.spinner-position {
+  z-index: 1;
+  float: initial
+}
+
+.main-content-position {
+  z-index: 0;
+}
+
+/*
+ * Make the component injected by <router-outlet> full height:
+ */
+
+.content {
+  padding: 0 2em;
+
+  // Move down from 'sticky header'
+  margin: 5rem auto 1rem auto;
+
+  // TODO: work on responsiveness
+  min-width: 80%;
+  max-width: 1600px;
+
+  @media(max-width: 959px) {
+    width: 100%;
+    padding: 0 .5em;
+  }
+
+  // Select all direct descendants only of the <main> element
+  // that are not <router-outlet> elements:
+  > *:not(router-outlet) {
+    display: block;
+  }
+}
