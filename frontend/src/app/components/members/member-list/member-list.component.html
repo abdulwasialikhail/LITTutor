@@ -1,0 +1,9 @@
+
+<div class="content">
+    <h1 class="mat-display-1">List of Tutors</h1>
+    <div fxLayout="row wrap" fxLayoutGap="16px grid">
+        <div *ngFor="let member of members$ | async">
+            <app-member-card [member]="member"></app-member-card>
+        </div>
+    </div>
+</div>

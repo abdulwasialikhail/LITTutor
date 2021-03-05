@@ -6,6 +6,11 @@ import { AuthGuard } from './_guards/auth.guard';
 import { RegisterComponent } from './components/register/register.component';
 import { LayoutMainAppComponent } from './components/layout-main-app/layout-main-app.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { MemberListComponent } from './components/members/member-list/member-list.component';
+import { MemberDetailComponent } from './components/members/member-detail/member-detail.component';
+import { ListsComponent } from './components/lists/lists.component';
+import { MessagesComponent } from './components/messages/messages.component';
+import { MemberEditComponent } from './components/members/member-edit/member-edit.component';
 
 const routes: Routes = [
   
@@ -15,6 +20,10 @@ const routes: Routes = [
     pathMatch: 'full',
     canActivate: [AuthGuard],
     runGuardsAndResolvers: 'always',
+  },
+  {
+    path: 'register',
+    component: RegisterComponent,
   },
   {
     path: 'home',
@@ -34,9 +43,25 @@ const routes: Routes = [
         component: HomeComponent,
       },
       {
-        path: 'register',
-        component: RegisterComponent,
+        path: 'members',
+        component: MemberListComponent
       },
+      {
+        path: 'member/edit',
+        component: MemberEditComponent
+      },
+      {
+        path: 'members/:username',
+        component: MemberDetailComponent
+      },
+      {
+        path: 'list',
+        component: ListsComponent
+      },
+      {
+        path: 'messages',
+        component: MessagesComponent
+      }
     ],
   },
 {

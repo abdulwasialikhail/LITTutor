@@ -1,7 +1,7 @@
 
 <div *ngIf="(accountService.currentUser$ | async) === null" class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
 
-    <mat-card class="box">
+    <mat-card >
       <mat-card-header>
         <mat-card-title>Log in</mat-card-title>
       </mat-card-header>
@@ -25,8 +25,9 @@
             matInput placeholder="Password">
           </mat-form-field>
         </mat-card-content>
-        <button mat-stroked-button color="accent" class="btn-block">Log in</button>
+        <button mat-raised-button color="accent" class="btn-block">Log in</button>
       </form>
+      <button routerLink="/register" mat-raised-button class="btn-block register">Register</button>
     </mat-card>
   
   </div>

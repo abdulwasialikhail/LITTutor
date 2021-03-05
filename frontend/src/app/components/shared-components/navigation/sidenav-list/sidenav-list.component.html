@@ -6,6 +6,7 @@
       <span class="nav-caption">Home</span>
     </a>
     <a mat-list-item
+    routerLink="members"
     (click)="onSidenavClose()">
    <mat-icon>list</mat-icon>
    <span>
@@ -28,10 +29,11 @@
    </span>
  </a>
  <a mat-list-item
+ routerLink="messages"
     (click)="onSidenavClose()">
    <mat-icon>mail</mat-icon>
    <span>
-     Email
+     Messages
    </span>
  </a>
   </mat-nav-list>

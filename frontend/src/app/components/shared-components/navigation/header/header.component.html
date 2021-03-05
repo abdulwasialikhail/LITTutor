@@ -10,8 +10,8 @@
 
   
 
-    <div>
-    <span>Hi User</span>
+    <div *ngIf="(accountService.currentUser$ | async) as user">
+    <span>Welcome <a routerLink="member/edit" > {{user.userName | titlecase}} </a></span>
     <span>&nbsp;&#124;&nbsp;</span>
     <a (click)="logout()" class="signout" href="#">SIGN OUT</a>
 </div>
