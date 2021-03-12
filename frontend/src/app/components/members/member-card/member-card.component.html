@@ -1,14 +1,14 @@
-
-            <mat-card class="mat-elevation-z4 card">
+<div *ngIf="(accountService.currentUser$ | async) as user">
+          <mat-card class="mat-elevation-z4 card">
                 <mat-card-header>
-                    <mat-card-title>{{member.knownAs}}</mat-card-title>
+                    <mat-card-title>{{member.firstName}}</mat-card-title>
                 </mat-card-header>
                 <div class="image-wrapper">
-                <img mat-card-image src="{{member.photoUrl || './assets/user.png'}}" alt="Photo of {{member.knownAs}}">
+                <img mat-card-image src="{{member.photoUrl || './assets/user.png'}}" alt="Photo of {{member.username}}">
             </div>
                 <mat-card-content>
                     <p>
-                        {{member.city}}
+                        {{typeName()}}
                     </p>
                 </mat-card-content>
                 <mat-card-actions>
@@ -19,6 +19,7 @@
                     mat-button>
                         VIEW
                     </button>
-                    <button mat-raised-button color="warn" (click)="notImplemented()">Delete</button>
+                    <button *ngIf="user.userType == 1" mat-raised-button color="warn" (click)="notImplemented()">Delete</button>
                 </mat-card-actions>
             </mat-card>
+</div>

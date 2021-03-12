@@ -1,40 +1,12 @@
 <mat-nav-list>
-    <a
-    routerLink="/" 
-    (click)="onSidenavClose()" mat-list-item>
-      <mat-icon>home</mat-icon>
-      <span class="nav-caption">Home</span>
-    </a>
-    <a mat-list-item
-    routerLink="members"
-    (click)="onSidenavClose()">
-   <mat-icon>list</mat-icon>
-   <span>
-     List Tutor
-   </span>
- </a>
- <a mat-list-item
- routerLink="register"
- (click)="onSidenavClose()">
-<mat-icon>person_add</mat-icon>
-<span>
-  Add User
-</span>
-</a>
- <a mat-list-item
-    (click)="onSidenavClose()">
-   <mat-icon>insert_drive_file</mat-icon>
-   <span>
-     Book Appointment
-   </span>
- </a>
- <a mat-list-item
- routerLink="messages"
-    (click)="onSidenavClose()">
-   <mat-icon>mail</mat-icon>
-   <span>
-     Messages
-   </span>
- </a>
-  </mat-nav-list>
-  
+  <a routerLink="/" (click)="onSidenavClose()" mat-list-item>
+    <mat-icon>home</mat-icon>
+    <span class="nav-caption">Home</span>
+  </a>
+  <div *ngIf="(accountService.currentUser$ | async) as user">
+    <app-admin-menu (sidenavClose) = "onSidenavClose()" *ngIf="user.userType == 1"></app-admin-menu>
+    <app-tutor-menu (sidenavClose) = "onSidenavClose()" *ngIf="user.userType == 2"></app-tutor-menu>
+    <app-student-menu (sidenavClose) = "onSidenavClose()" *ngIf="user.userType == 3"></app-student-menu>
+
+  </div>
+</mat-nav-list>

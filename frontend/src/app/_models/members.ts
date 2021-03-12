@@ -4,16 +4,21 @@ export interface Member {
     id: number;
     username: string;
     photoUrl: string;
+    firstName: string;
+    lastName: string;
+    studentId: string;
+    campus: string;
+    course: string;
+    year: number;
     age: number;
-    knownAs: string;
+    email: string;
+    phone: number;
     created: Date;
     lastActive: Date;
     gender: string;
-    introduction: string;
-    lookingFor: string;
-    interests: string;
     city: string;
     country: string;
     photos: Photo[];
+    userType: string;
   }
   

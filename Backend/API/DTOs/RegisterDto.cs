@@ -5,14 +5,33 @@ namespace API.DTOs
 {
     public class RegisterDto
     {
-        [Required]
-        public string UserName { get; set; }
 
         [Required]
-        public string KnownAs { get; set; }
+        public string FirstName { get; set; }
+
+        [Required]
+        public string LastName { get; set; }
+
+        [Required]
+        public string StudentId { get; set; }
+
+        [Required]
+        public string Campus { get; set; }
+
+        [Required]
+        public string Course { get; set; }
+
+        [Required]
+        public int Year { get; set; }
 
         [Required]
         public string Gender { get; set; }
+
+        [Required]
+        public string Phone { get; set; }
+
+        [Required]
+        public string Email { get; set; }
 
         [Required]
         public DateTime DateOfBirth { get; set; }

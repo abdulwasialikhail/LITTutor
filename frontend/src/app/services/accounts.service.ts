@@ -39,6 +39,10 @@ export class AccountsService {
     )
   }
 
+  addTutor(model: any) {
+    return this.http.post(this.baseUrl + 'account/addTutor', model);
+  }
+
   setCurrentUser(user: User) {
     this.currentUserSource.next(user);
   }

@@ -1,15 +1,19 @@
 <div div fxLayout="row" fxLayoutGap="32px" *ngIf="member">
     <mat-card class="example-card">
-        <img mat-card-image src="{{member.photoUrl || './assets/user.png'}}" alt="Photo of {{member.knownAs}}">
+        <img mat-card-image src="{{member.photoUrl || './assets/user.png'}}" alt="Photo of {{member.firstName + member.lastName}}">
         <mat-card-header>
             <mat-card-title>Tutor Profile</mat-card-title>
-            <mat-card-subtitle>000-000-000</mat-card-subtitle>
-            <mat-card-subtitle>xxxxx@xxx.com</mat-card-subtitle>
+            <mat-card-subtitle>{{member.phone}}</mat-card-subtitle>
+            <mat-card-subtitle>{{member.email}}</mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
             <div>
                 <strong>Name:</strong>
-                <p>{{member.knownAs}}</p>
+                <p>{{member.firstName + " " + member.lastName}}</p>
+            </div>
+            <div>
+                <strong>Type:</strong>
+                <p>{{typeName()}}</p>
             </div>
             <div>
                 <strong>Address</strong>
@@ -18,6 +22,10 @@
             <div>
                 <strong>Age</strong>
                 <p>{{member.age}}</p>
+            </div>
+            <div *ngIf="member.userType == 'Student'">
+                <strong>K Number</strong>
+                <p>{{member.studentId}}</p>
             </div>
             <div>
                 <strong>Last Active</strong>
@@ -33,9 +41,9 @@
         </mat-card-actions>
     </mat-card>
     <mat-tab-group class="tabs" mat-align-tabs="start">
-        <mat-tab label="About {{member.knownAs}}">
+        <mat-tab label="About {{member.firstName}}">
             <h1>Description</h1>
-            <p>{{member.introduction}}</p>
+            <p>Description goes here!</p>
         </mat-tab>
         <mat-tab label="Messages">
             <h1>Work In Progress..</h1>

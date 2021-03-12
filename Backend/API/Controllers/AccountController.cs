@@ -27,14 +27,14 @@ namespace API.Controllers
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
 
-            if (await UserExists(registerDto.UserName)) return BadRequest("Username already exists");
+            if (await UserExists(registerDto.Email)) return BadRequest("Email already exists");
 
             var user = _mapper.Map<AppUser>(registerDto);
 
             using var hmac = new HMACSHA512();
 
-
-                user.UserName = registerDto.UserName.ToLower();
+                user.UserName = registerDto.Email.ToLower();
+                user.UserTypeId = 3;
                 registerDto.DateOfBirth.ToString("dd/mm/yyyy");
                 user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
                 user.PasswordSalt = hmac.Key;
@@ -46,9 +46,44 @@ namespace API.Controllers
             {
                 UserName = user.UserName,
                 Token = _tokenService.CreateToken(user),
-                KnownAs = user.KnownAs
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                UserType = user.UserTypeId,
+                CheckEmail = user.Email
             };
         }
+
+        [HttpPost("addTutor")]
+        public async Task<ActionResult<UserDto>> AddTutor(RegisterDto registerDto)
+        {
+
+            if (await UserExists(registerDto.Email)) return BadRequest("Email already exists");
+
+            var user = _mapper.Map<AppUser>(registerDto);
+
+            using var hmac = new HMACSHA512();
+
+                user.UserName = registerDto.Email.ToLower();
+                user.UserTypeId = 2;
+                user.StudentId = "N/A";
+                registerDto.DateOfBirth.ToString("dd/mm/yyyy");
+                user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
+                user.PasswordSalt = hmac.Key;
+
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+            return new UserDto
+            {
+                UserName = user.UserName,
+                Token = _tokenService.CreateToken(user),
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                UserType = user.UserTypeId,
+                CheckEmail = user.Email
+            };
+        }
+
 
         [HttpPost("login")]
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
@@ -69,7 +104,10 @@ namespace API.Controllers
             {
                 UserName = user.UserName,
                 Token = _tokenService.CreateToken(user),
-                KnownAs = user.KnownAs
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                UserType = user.UserTypeId,
+                CheckEmail = user.Email
             };
         }
 

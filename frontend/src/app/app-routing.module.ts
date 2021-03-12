@@ -11,6 +11,7 @@ import { MemberDetailComponent } from './components/members/member-detail/member
 import { ListsComponent } from './components/lists/lists.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { MemberEditComponent } from './components/members/member-edit/member-edit.component';
+import { AddTutorComponent } from './components/add-tutor/add-tutor.component';
 
 const routes: Routes = [
   
@@ -55,8 +56,8 @@ const routes: Routes = [
         component: MemberDetailComponent
       },
       {
-        path: 'list',
-        component: ListsComponent
+        path: 'register/tutor',
+        component: AddTutorComponent
       },
       {
         path: 'messages',

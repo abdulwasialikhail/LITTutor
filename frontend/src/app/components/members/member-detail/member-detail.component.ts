@@ -23,4 +23,13 @@ export class MemberDetailComponent implements OnInit {
     })
   }
 
+  public typeName() {
+    if (this.member.userType === "SystemAdmin") {
+      return "System Admin";
+    } else {
+      return this.member.userType;
+    }
+
+  }
+
 }

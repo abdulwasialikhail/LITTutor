@@ -1,3 +1,8 @@
 <div class="page-title">
   <h1 class="mat-display-1">Welcome to Learning Support unit</h1>
 </div>
+<div *ngIf="(accountService.currentUser$ | async) as user">
+  <p class="mat-display-1" *ngIf="user.userType == 1">Hello Admin</p>
+  <p class="mat-display-1" *ngIf="user.userType == 2">Hello Tutor</p>
+  <p class="mat-display-1" *ngIf="user.userType == 3">Hello Student</p>
+</div>
