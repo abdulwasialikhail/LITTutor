@@ -8,5 +8,6 @@ namespace API.DTOs
         public string LastName { get; set; }
         public int UserType { get; set; }
         public string CheckEmail { get; set; }
+        public bool CheckApplicationStatus { get; set; }
     }
 }

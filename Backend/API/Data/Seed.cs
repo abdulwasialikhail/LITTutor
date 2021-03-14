@@ -34,14 +34,30 @@ namespace API.Data
         public static async Task SeedUserTypes(DataContext context)
         {
             if (await context.UserTypes.AnyAsync()) return;
-            
+
 
             var userTypeData = await System.IO.File.ReadAllTextAsync("Data/UserTypeSeedData.json");
             var types = JsonSerializer.Deserialize<List<UserType>>(userTypeData);
             foreach (var type in types)
             {
-                
+
                 context.UserTypes.Add(type);
+            }
+
+            await context.SaveChangesAsync();
+        }
+
+        public static async Task SeedApplicationStatus(DataContext context)
+        {
+           if (await context.ApplicationStatuses.AnyAsync()) return;
+
+
+            var applicationsStatusData = await System.IO.File.ReadAllTextAsync("Data/ApplicationStatusSeedData.json");
+            var types = JsonSerializer.Deserialize<List<ApplicationStatus>>(applicationsStatusData);
+            foreach (var type in types)
+            {
+
+                context.ApplicationStatuses.Add(type);
             }
 
             await context.SaveChangesAsync();

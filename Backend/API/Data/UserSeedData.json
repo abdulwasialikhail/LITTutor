@@ -21,7 +21,8 @@
                 "IsMain": true
             }
         ],
-        "UserTypeId": 1
+        "UserTypeId": 1,
+        "ApplicationSubmitted": false
     },
     {
         "UserName": "Lee@yahoo.com",
@@ -45,7 +46,8 @@
                 "IsMain": true
             }
         ],
-        "UserTypeId": 2
+        "UserTypeId": 2,
+        "ApplicationSubmitted": false
     },
     {
         "UserName": "Aoife@gmail.com",
@@ -69,6 +71,7 @@
                 "IsMain": true
             }
         ],
-        "UserTypeId": 2
+        "UserTypeId": 2,
+        "ApplicationSubmitted": false
     }
 ]

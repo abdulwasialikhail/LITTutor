@@ -10,7 +10,9 @@ namespace API.Interfaces
         void Update(AppUser user);
         Task<bool> SaveAllAsync();
         Task<IEnumerable<AppUser>> GetUsersAsync();
-        Task<AppUser> GetUserByIdAsync (int id);
+        Task<IEnumerable<ApplicationDto>> GetApplicationsAsync();
+        Task<ApplicationDto> GetApplicationByIdAsync (int id);
+        Task<AppUser> GetUserApplicationStatus (bool status);
         Task<AppUser> GetUserByUsernameAsync (string name);
         Task<IEnumerable<MemberDto>> GetMembersAsync();
         Task<MemberDto> GetMemberAsync(string username);

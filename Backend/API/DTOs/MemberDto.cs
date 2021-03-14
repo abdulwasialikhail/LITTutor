@@ -24,6 +24,7 @@ namespace API.DTOs
         public string Country { get; set; }
         public ICollection<PhotoDto> Photos { get; set; }
         public string UserType { get; set; }
+        public bool ApplicationSubmitted{ get; set; }
 
     }
 }

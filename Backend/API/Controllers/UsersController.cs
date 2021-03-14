@@ -32,6 +32,22 @@ namespace API.Controllers
             return Ok(users);
         }
 
+        [Authorize]
+        [HttpGet("check")]
+        public async Task<ActionResult<IEnumerable<ApplicationDto>>> TestCall()
+        {
+            var apps = await _userRepository.GetApplicationsAsync();
+            return Ok(apps);
+        }
+
+        [Authorize]
+        [HttpGet("check/{id}")]
+        public async Task<ActionResult<ApplicationDto>> TestCallId(int id)
+        {
+            return await _userRepository.GetApplicationByIdAsync(id);
+            
+        }
+
         // [Authorize]
         // [HttpGet("{id}")]
         // public async Task<ActionResult<AppUser>> GetUserById(int id)
@@ -45,7 +61,7 @@ namespace API.Controllers
         public async Task<ActionResult<MemberDto>> GetUserByUsername(string username)
         {
             return await _userRepository.GetMemberAsync(username);
-           
+
 
         }
 

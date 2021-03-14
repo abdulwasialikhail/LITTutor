@@ -26,8 +26,10 @@ namespace API.Entities
         public string City { get; set; }
         public string Country { get; set; }
         public ICollection<Photo> Photos { get; set; }
+        public ICollection<ApplicationData> ApplicationData { get; set; }
         public UserType UserType { get; set; }
         public int UserTypeId { get; set; }
+        public bool ApplicationSubmitted { get; set; }
 
         // public int GetAge()
         // {

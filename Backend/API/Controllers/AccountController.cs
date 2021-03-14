@@ -13,6 +13,9 @@ namespace API.Controllers
 {
     public class AccountController : BaseApiController
     {
+        //public string userEmail { get; set; }
+
+        private string userEmail;
         private readonly DataContext _context;
         private readonly ITokenService _tokenService;
         private readonly IMapper _mapper;
@@ -22,6 +25,8 @@ namespace API.Controllers
             _tokenService = tokenService;
             _context = context;
         }
+
+        //public AccountController () {}
 
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
@@ -33,11 +38,11 @@ namespace API.Controllers
 
             using var hmac = new HMACSHA512();
 
-                user.UserName = registerDto.Email.ToLower();
-                user.UserTypeId = 3;
-                registerDto.DateOfBirth.ToString("dd/mm/yyyy");
-                user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
-                user.PasswordSalt = hmac.Key;
+            user.UserName = registerDto.Email.ToLower();
+            user.UserTypeId = 3;
+            registerDto.DateOfBirth.ToString("dd/mm/yyyy");
+            user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
+            user.PasswordSalt = hmac.Key;
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
@@ -49,7 +54,8 @@ namespace API.Controllers
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 UserType = user.UserTypeId,
-                CheckEmail = user.Email
+                CheckEmail = user.Email,
+                CheckApplicationStatus = user.ApplicationSubmitted
             };
         }
 
@@ -63,12 +69,12 @@ namespace API.Controllers
 
             using var hmac = new HMACSHA512();
 
-                user.UserName = registerDto.Email.ToLower();
-                user.UserTypeId = 2;
-                user.StudentId = "N/A";
-                registerDto.DateOfBirth.ToString("dd/mm/yyyy");
-                user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
-                user.PasswordSalt = hmac.Key;
+            user.UserName = registerDto.Email.ToLower();
+            user.UserTypeId = 2;
+            user.StudentId = "N/A";
+            registerDto.DateOfBirth.ToString("dd/mm/yyyy");
+            user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
+            user.PasswordSalt = hmac.Key;
 
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
@@ -80,7 +86,8 @@ namespace API.Controllers
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 UserType = user.UserTypeId,
-                CheckEmail = user.Email
+                CheckEmail = user.Email,
+                CheckApplicationStatus = user.ApplicationSubmitted
             };
         }
 
@@ -90,6 +97,11 @@ namespace API.Controllers
         {
             var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == loginDto.UserName);
             if (user == null) return Unauthorized("Invalid Username");
+            
+            //int i = 2;
+            //CurrentUser(user.Email.ToLower());
+
+            //userEmail = user.Email.ToLower();
 
             using var hmac = new HMACSHA512(user.PasswordSalt);
 
@@ -107,14 +119,71 @@ namespace API.Controllers
                 FirstName = user.FirstName,
                 LastName = user.LastName,
                 UserType = user.UserTypeId,
-                CheckEmail = user.Email
+                CheckEmail = user.Email,
+                CheckApplicationStatus = user.ApplicationSubmitted
             };
         }
+
+        // [HttpPost("createApplication")]
+        // public async Task<ActionResult<UserDto>> Application(CreateApplicationDto applicationDto)
+        // {
+        //      //var acc = new AccountController(_context, _tokenService, _mapper);
+                
+        //        var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == applicationDto.UserName);
+        //     // if (await UserExists(registerDto.Email)) return BadRequest("Email already exists");
+
+        //     var application = _mapper.Map<ApplicationData>(applicationDto);
+
+        //     application.Issue = applicationDto.Issue;
+        //     application.Course = applicationDto.Course;
+        //     application.ApplicationStatusId = 2;
+        //     application.AppUserId = user.Id;
+        //     user.ApplicationSubmitted = true;
+
+        //     _context.Applications.Add(application);
+        //     await _context.SaveChangesAsync();
+
+        //     // return new CreateApplicationDto
+        //     // {
+        //     //     Issue = application.Issue,
+        //     //     Course = application.Course,
+        //     //     ApplicationStatusId = application.ApplicationStatusId,
+        //     //     AppUserId = application.AppUserId
+
+        //     // };
+        //     return new UserDto
+        //     {
+        //         UserName = user.UserName,
+        //         Token = _tokenService.CreateToken(user),
+        //         FirstName = user.FirstName,
+        //         LastName = user.LastName,
+        //         UserType = user.UserTypeId,
+        //         CheckEmail = user.Email,
+        //         CheckApplicationStatus = true
+        //     };
+        // }
 
 
         private async Task<bool> UserExists(string username)
         {
             return await _context.Users.AnyAsync(x => x.UserName == username.ToLower());
+        }
+        // private async Task<string> CurrentUser(string username)
+        // {
+        //     var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == username);
+
+
+        //    // return await _context.Users.AnyAsync(x => x.UserName == username.ToLower());
+        // }
+
+        public string CurrentUser(string username)
+        {
+            return userEmail = username;
+        }
+
+        public string getCurrentUser()
+        {
+            return userEmail;
         }
     }
 }

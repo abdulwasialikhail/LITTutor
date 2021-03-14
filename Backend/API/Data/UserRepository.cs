@@ -20,6 +20,22 @@ namespace API.Data
             _context = context;
         }
 
+        public async Task<ApplicationDto> GetApplicationByIdAsync(int id)
+        {
+            return await _context.Applications
+            .Where(x => x.Id == id)
+            .ProjectTo<ApplicationDto>(_mapper.ConfigurationProvider)
+            .SingleOrDefaultAsync();
+
+        }
+
+        public async Task<IEnumerable<ApplicationDto>> GetApplicationsAsync()
+        {
+            return await _context.Applications
+            .ProjectTo<ApplicationDto>(_mapper.ConfigurationProvider)
+            .ToListAsync();
+        }
+
         public async Task<MemberDto> GetMemberAsync(string username)
         {
             return await _context.Users
@@ -33,6 +49,12 @@ namespace API.Data
             return await _context.Users
                 .ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
                 .ToListAsync();
+        }
+
+        public async Task<AppUser> GetUserApplicationStatus(bool name)
+        {
+            return await _context.Users.SingleOrDefaultAsync(x => x.ApplicationSubmitted == name);
+
         }
 
         public async Task<AppUser> GetUserByIdAsync(int id)
