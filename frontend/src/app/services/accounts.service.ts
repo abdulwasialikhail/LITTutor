@@ -43,6 +43,17 @@ export class AccountsService {
     return this.http.post(this.baseUrl + 'account/addTutor', model);
   }
 
+  createApplication(model: any) {
+    return this.http.post(this.baseUrl + 'application/createApplication', model).pipe(
+      map((user: User) => {
+        if (user) {
+          localStorage.setItem('user', JSON.stringify(user));
+          this.currentUserSource.next(user);
+        }
+      })
+    );
+  }
+
   setCurrentUser(user: User) {
     this.currentUserSource.next(user);
   }

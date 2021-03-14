@@ -5,4 +5,5 @@ export interface User {
     lastName: string;
     userType: number;
     checkEmail: string;
+    checkApplicationStatus: boolean;
 }

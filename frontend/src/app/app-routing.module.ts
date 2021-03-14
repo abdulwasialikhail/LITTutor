@@ -12,6 +12,8 @@ import { ListsComponent } from './components/lists/lists.component';
 import { MessagesComponent } from './components/messages/messages.component';
 import { MemberEditComponent } from './components/members/member-edit/member-edit.component';
 import { AddTutorComponent } from './components/add-tutor/add-tutor.component';
+import { CreateApplicationComponent } from './components/applications/create-application/create-application.component';
+import { SubmittedApplicationsComponent } from './components/applications/submitted-applications/submitted-applications.component';
 
 const routes: Routes = [
   
@@ -60,8 +62,16 @@ const routes: Routes = [
         component: AddTutorComponent
       },
       {
+        path: 'application',
+        component: CreateApplicationComponent
+      },
+      {
         path: 'messages',
         component: MessagesComponent
+      },
+      {
+        path: 'applications',
+        component: SubmittedApplicationsComponent
       }
     ],
   },

@@ -20,3 +20,42 @@ body {
   box-shadow: 0 3px 5px -1px rgba(0, 0, 0, .2), 0 6px 10px 0 rgba(0, 0, 0, .14), 0 1px 18px 0 rgba(0, 0, 0, .12);
 }
 
+.mat-display-1 {
+  margin-top: 70px;
+}
+
+.page-title {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+@import '~@angular/material/theming';
+
+.isa_info, .isa_success, .isa_warning, .isa_error {
+  margin: 10px 0px;
+  padding:12px;
+
+}
+.isa_info {
+  color: mat-color($mat-blue, 900);
+  background-color: mat-color($mat-blue, 10);
+}
+.isa_success {
+  color: mat-color($mat-green, 700);
+  background-color: mat-color($mat-green, 100);
+}
+.isa_warning {
+  color: mat-color($mat-amber, 800);
+  background-color: mat-color($mat-amber, 200);
+}
+.isa_error {
+  color: mat-color($mat-red, A700);
+  background-color: mat-color($mat-red, 100);
+}
+.isa_info i, .isa_success i, .isa_warning i, .isa_error i {
+  margin:10px 22px;
+  font-size:2em;
+  vertical-align:middle;
+}
+

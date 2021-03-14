@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Member } from '../_models/members';
 import { map } from 'rxjs/operators';
+import { Application } from '../_models/application';
 
 @Injectable({
   providedIn: 'root'
@@ -11,6 +12,7 @@ import { map } from 'rxjs/operators';
 export class MembersService {
   baseUrl = environment.apiUrl;
   members: Member[] = [];
+  applications: Application[] = [];
   
   constructor(private http: HttpClient) { }
 
@@ -22,6 +24,26 @@ export class MembersService {
         return members;
       })
     );
+  }
+
+  getApplications() {
+    if (this.applications.length > 0) return of(this.applications);
+    return this.http.get<Application []>(this.baseUrl + 'users/check').pipe(
+      map(apps => {
+        this.applications = apps;
+        return apps;
+      })
+    );
+  }
+
+  getApplication(id: number) {
+    const app = this.applications.find(x => x.appUserId === id)
+    if (app !== undefined) return of (app);
+    return this.http.get<Application>(this.baseUrl + 'users/check/' + id)
+  }
+
+  check() {
+    return this.http.get<Member>(this.baseUrl + 'users/checsk');
   }
 
   getMember(username: string) {

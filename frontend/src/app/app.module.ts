@@ -25,6 +25,9 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { MemberEditComponent } from './components/members/member-edit/member-edit.component';
 import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { AddTutorComponent } from './components/add-tutor/add-tutor.component';
+import { SubmittedApplicationsComponent } from './components/applications/submitted-applications/submitted-applications.component';
+import { CreateApplicationComponent } from './components/applications/create-application/create-application.component';
+import { ListApplicationsComponent } from './components/applications/list-applications/list-applications.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +43,10 @@ import { AddTutorComponent } from './components/add-tutor/add-tutor.component';
     MessagesComponent,
     MemberCardComponent,
     MemberEditComponent,
-    AddTutorComponent
+    AddTutorComponent,
+    SubmittedApplicationsComponent,
+    CreateApplicationComponent,
+    ListApplicationsComponent
   ],
   imports: [
     BrowserModule,

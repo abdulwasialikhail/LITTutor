@@ -20,5 +20,6 @@ export interface Member {
     country: string;
     photos: Photo[];
     userType: string;
+    applicationSubmitted: boolean;
   }
   
