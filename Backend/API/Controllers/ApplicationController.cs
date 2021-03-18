@@ -118,7 +118,7 @@ namespace API.Controllers
 
             var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == applicationDto.UserName);
             var app = await _context.Applications.SingleOrDefaultAsync(x => x.AppUserId == user.Id);
-            user.FirstName = "Aoife";
+            //user.FirstName = "Aoife";
             // if (await UserExists(registerDto.Email)) return BadRequest("Email already exists");
 
            // ApplicationDto applicationDto = new ApplicationDto();

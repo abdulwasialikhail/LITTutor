@@ -12,27 +12,12 @@
             </mat-panel-title>
           </mat-expansion-panel-header>
 
-          <h4 class="mat-h2">Submitted Application</h4> 
-          
-          <mat-expansion-panel *ngFor="let applications of applications$ | async">
-            
-            <mat-expansion-panel-header *ngIf="applications.appUserId == student.id">
-              <mat-panel-title >
-                {{ student.studentId}}
-              </mat-panel-title>
-
-              
-            </mat-expansion-panel-header>
-
-
-            <div *ngIf="applications.appUserId == student.id">
+          <div *ngFor="let applications of applications$ | async">
+          <div *ngIf="applications.appUserId == student.id">
     
-              <p >View Application </p>
-              <a routerLink="{{applications.id}}"> View Application</a>
-          </div>
-
-
-          </mat-expansion-panel>
+            <a routerLink="{{applications.id}}"> View Application</a>
+        </div>
+      </div>
 
         </mat-expansion-panel>
       </mat-accordion>
