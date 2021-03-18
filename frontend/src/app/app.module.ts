@@ -28,6 +28,7 @@ import { AddTutorComponent } from './components/add-tutor/add-tutor.component';
 import { SubmittedApplicationsComponent } from './components/applications/submitted-applications/submitted-applications.component';
 import { CreateApplicationComponent } from './components/applications/create-application/create-application.component';
 import { ListApplicationsComponent } from './components/applications/list-applications/list-applications.component';
+import { ViewApplicationComponent } from './components/applications/view-application/view-application.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { ListApplicationsComponent } from './components/applications/list-applic
     AddTutorComponent,
     SubmittedApplicationsComponent,
     CreateApplicationComponent,
-    ListApplicationsComponent
+    ListApplicationsComponent,
+    ViewApplicationComponent
   ],
   imports: [
     BrowserModule,

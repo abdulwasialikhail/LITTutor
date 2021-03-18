@@ -54,6 +54,10 @@ export class AccountsService {
     );
   }
 
+  approveApplication(model: any) {
+    return this.http.put(this.baseUrl + 'application/approve', model);
+  }
+
   setCurrentUser(user: User) {
     this.currentUserSource.next(user);
   }

@@ -16,8 +16,10 @@ namespace API.Controllers
         private readonly DataContext _context;
         private readonly ITokenService _tokenService;
         private readonly IMapper _mapper;
-        public ApplicationController(DataContext context, ITokenService tokenService, IMapper mapper)
+        private readonly IUserRepository _userRepository;
+        public ApplicationController(IUserRepository userRepository, DataContext context, ITokenService tokenService, IMapper mapper)
         {
+            _userRepository = userRepository;
             _mapper = mapper;
             _tokenService = tokenService;
             _context = context;
@@ -26,7 +28,7 @@ namespace API.Controllers
         // [HttpPost("createApplication")]
         // public async Task<ActionResult<UserDto>> Application(CreateApplicationDto applicationDto)
         // {
-            
+
         //     UserDto u = new UserDto();
         //     var name = u.UserName;
 
@@ -69,9 +71,9 @@ namespace API.Controllers
         [HttpPost("createApplication")]
         public async Task<ActionResult<UserDto>> Application(CreateApplicationDto applicationDto)
         {
-             //var acc = new AccountController(_context, _tokenService, _mapper);
-                
-               var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == applicationDto.UserName);
+            //var acc = new AccountController(_context, _tokenService, _mapper);
+
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == applicationDto.UserName);
             // if (await UserExists(registerDto.Email)) return BadRequest("Email already exists");
 
             var application = _mapper.Map<ApplicationData>(applicationDto);
@@ -104,6 +106,48 @@ namespace API.Controllers
                 CheckApplicationStatus = true
             };
         }
+
+        [HttpPut("approve")]
+        public async Task<ActionResult> ApplicationApproval(CreateApplicationDto applicationDto)
+        {
+            // APPLICATION DTO SHOULD MATCH EXACTLY AS CLIENT SIDE
+
+           // string email = "aoife@gmail.com";
+          // int inputmail = 4;
+            //var acc = new AccountController(_context, _tokenService, _mapper);
+
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == applicationDto.UserName);
+            var app = await _context.Applications.SingleOrDefaultAsync(x => x.AppUserId == user.Id);
+            user.FirstName = "Aoife";
+            // if (await UserExists(registerDto.Email)) return BadRequest("Email already exists");
+
+           // ApplicationDto applicationDto = new ApplicationDto();
+
+            // var application = _mapper.Map<ApplicationData>(applicationDto);
+
+
+            //application.ApplicationStatusId = 1;
+           // application.Id = user.Id;
+
+            user.ApplicationSubmitted = false;
+            app.ApplicationStatusId = 1;
+
+            // _context.Applications.Add(application);
+            await _context.SaveChangesAsync();
+            // _userRepository.UpdateApplication(application);
+
+            // return new CreateApplicationDto
+            // {
+            //     Issue = application.Issue,
+            //     Course = application.Course,
+            //     ApplicationStatusId = application.ApplicationStatusId,
+            //     AppUserId = application.AppUserId
+
+            // };
+
+            return Ok();
+        }
+
 
     }
 }

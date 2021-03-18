@@ -85,5 +85,10 @@ namespace API.Data
         {
             _context.Entry(user).State = EntityState.Modified;
         }
+
+        public void UpdateApplication(ApplicationData application)
+        {
+            _context.Entry(application).State = EntityState.Modified;
+        }
     }
 }

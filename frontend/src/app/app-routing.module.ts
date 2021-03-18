@@ -14,6 +14,7 @@ import { MemberEditComponent } from './components/members/member-edit/member-edi
 import { AddTutorComponent } from './components/add-tutor/add-tutor.component';
 import { CreateApplicationComponent } from './components/applications/create-application/create-application.component';
 import { SubmittedApplicationsComponent } from './components/applications/submitted-applications/submitted-applications.component';
+import { ViewApplicationComponent } from './components/applications/view-application/view-application.component';
 
 const routes: Routes = [
   
@@ -64,6 +65,10 @@ const routes: Routes = [
       {
         path: 'application',
         component: CreateApplicationComponent
+      },
+      {
+        path: 'applications/:id',
+        component: ViewApplicationComponent
       },
       {
         path: 'messages',

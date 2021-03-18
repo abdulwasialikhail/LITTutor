@@ -40,6 +40,7 @@ namespace API.Controllers
 
             user.UserName = registerDto.Email.ToLower();
             user.UserTypeId = 3;
+            //user.Year = registerDto.Year;
             registerDto.DateOfBirth.ToString("dd/mm/yyyy");
             user.PasswordHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(registerDto.Password));
             user.PasswordSalt = hmac.Key;
