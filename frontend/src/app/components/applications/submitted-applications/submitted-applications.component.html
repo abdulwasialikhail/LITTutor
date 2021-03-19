@@ -7,22 +7,31 @@
     <mat-accordion *ngIf="student.applicationSubmitted == true && student.userType == 'Student'">
         <mat-expansion-panel  >
           <mat-expansion-panel-header>
-            <mat-panel-title class="md-title">
-              {{student.firstName + ' ' + student.lastName}}
-            </mat-panel-title>
+            <mat-panel-title style="height: 100%; padding-bottom: 2px;"
+            fxLayout="row"
+            fxLayout.lt-lg="column"
+            fxLayoutAlign="center"
+            fxLayoutGap="10px"
+            fxLayoutGap.lte-md="0">
+<div fxFlex="20%">{{ student.firstName + " " + student.lastName}}</div>
+<div fxFlex="60%" class="text-lowercase">{{ student.studentId }}</div>
+<div fxFlex="20%">{{student.phone }}</div>
+</mat-panel-title>
           </mat-expansion-panel-header>
 
           <div *ngFor="let applications of applications$ | async">
           <div *ngIf="applications.appUserId == student.id">
     
-            <a routerLink="{{applications.id}}"> View Application</a>
+            <a class="link" routerLink="{{applications.id}}"> View Application</a>
         </div>
       </div>
 
         </mat-expansion-panel>
       </mat-accordion>
-    
-      <div *ngIf="student.applicationSubmitted == false && student.userType == 'Student' && i-1 == bb"  class="isa_success">
-        Currently no student has submitted any applications.
+
+
     </div>
-    </div>
+
+    <div *ngIf="bb < 1"  class="isa_success">
+      Currently no student has submitted any applications.
+  </div>

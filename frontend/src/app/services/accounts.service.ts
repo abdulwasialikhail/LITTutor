@@ -55,7 +55,14 @@ export class AccountsService {
   }
 
   approveApplication(model: any) {
-    return this.http.put(this.baseUrl + 'application/approve', model);
+    return this.http.put(this.baseUrl + 'application/approve', model).pipe(
+      map((user: User) => {
+        if (user) {
+          localStorage.setItem('user', JSON.stringify(user));
+          this.currentUserSource.next(user); 
+        }
+      })
+    );
   }
 
   setCurrentUser(user: User) {

@@ -14,14 +14,14 @@ import { Member } from 'src/app/_models/members';
   styleUrls: ['./view-application.component.scss']
 })
 export class ViewApplicationComponent implements OnInit {
-  
-  application: Application;
-  validationErrors: string [];
-  applicationForm: FormGroup;
-  members$: Observable<Member []>;
 
-  constructor(private toastr: ToastrService, private router: Router, 
-    private fb: FormBuilder, public accountService: AccountsService, 
+  application: Application;
+  validationErrors: string[];
+  applicationForm: FormGroup;
+  members$: Observable<Member[]>;
+
+  constructor(private toastr: ToastrService, private router: Router,
+    private fb: FormBuilder, public accountService: AccountsService,
     private memberService: MembersService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -37,19 +37,27 @@ export class ViewApplicationComponent implements OnInit {
   }
 
   initializeForm() {
-    this.applicationForm = this.fb.group ({
-      issue: ['', Validators.required],
-      course: ['', Validators.required],
-      userName: ['', Validators.required]
+    this.applicationForm = this.fb.group({
+      issue: [{ value: '', disabled: true }, Validators.required],
+      course: [{ value: '', disabled: true }, Validators.required],
+      userName: [{ value: '', disabled: true }, Validators.required],
+      name: [{ value: '', disabled: true }]
     });
   }
 
-  
+
 
   approve(): void {
-    this.accountService.approveApplication(this.applicationForm.value).subscribe( response => {
-      this.router.navigateByUrl("/home");
+    this.accountService.approveApplication(this.applicationForm.getRawValue()).subscribe(response => {
+      this.router.navigateByUrl("/home/applications");
       this.toastr.success("Application Approved Successfully!");
+      //this.memberService.getApplications();
+
+      // TODO: Use the code below to fix reload
+      // this.router.navigate(['path/to'])
+      //   .then(() => {
+      //     window.location.reload();
+      //   });
     });
   }
 

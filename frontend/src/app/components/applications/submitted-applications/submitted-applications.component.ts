@@ -23,7 +23,7 @@ export class SubmittedApplicationsComponent implements OnInit {
   arraySize: [];
   applicationForm: FormGroup;
   //model: any;
-  myError: boolean;
+  myError: boolean = true;
   bb: number = 0;
   model: any = {};
   email = "aoife@gmail.com";
@@ -34,8 +34,9 @@ export class SubmittedApplicationsComponent implements OnInit {
   ngOnInit(): void {
      this.members$ = this.memberService.getMembers();
     this.applications$ = this.memberService.getApplications();
-   this.loadMembers();
+   
    this.loadApplications();
+   this.loadMembers();
     this.initializeForm();
     console.log(this.bb);
   }
@@ -63,24 +64,25 @@ export class SubmittedApplicationsComponent implements OnInit {
     this.memberService.getMembers().subscribe(member => {
       this.status = member;
       //console.log(this.status.length);
-      this.status.forEach(c => {if (c.applicationSubmitted === false && c.userType === "Student") {
+      this.status.forEach(c => {if (c.applicationSubmitted === true && c.userType === "Student") {
         this.bb++;
         this.myError=false;
        console.log(this.bb);
+       console.log(this.myError);
       }
     });
-      for (const st of this.status) {
+      // for (const st of this.status) {
         
-        if (st.applicationSubmitted === true && st.userType === "Student") {
-         // this.myError=false;
-         // this.bb = 9;
-         // console.log(this.bb);
-        } else {
-         // this.bb = 6;
-          //console.log(this.bb);
-        }
+      //   if (st.applicationSubmitted === true && st.userType === "Student") {
+      //    // this.myError=false;
+      //    // this.bb = 9;
+      //    // console.log(this.bb);
+      //   } else {
+      //    // this.bb = 6;
+      //     //console.log(this.bb);
+      //   }
         
-      }
+      // }
     })
   }
   
