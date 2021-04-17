@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using API.Data;
 using API.DTOs;
 using API.Entities;
+using API.Extensions;
+using API.Helpers;
 using API.Interfaces;
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
@@ -31,13 +33,35 @@ namespace API.Controllers
 
             return Ok(users);
         }
+        
+        [HttpGet("members-paginated")]
+        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsersPaginated([FromQuery]UserParams userParams)
+        {
+            var user = await _userRepository.GetUserByUsernameAsync(User.GetUsername());
+            userParams.CurrentUsername = User.GetUsername();
+
+            // if (string.IsNullOrEmpty(userParams.Gender))
+            // {
+            //     userParams.Gender = user.Gender == "male" ? "female" : "male";
+            // }
+
+
+            var users = await _userRepository.GetMembersPaginatedAsync(userParams);
+
+            Response.AddPaginationHeader(users.CurrentPage, userParams.PageSize, 
+                users.TotalCount, users.TotalPages);
+
+            return Ok(users);
+        }
+
+
 
         [Authorize]
         [HttpGet("check")]
         public async Task<ActionResult<IEnumerable<ApplicationDto>>> TestCall()
         {
             var apps = await _userRepository.GetApplicationsAsync();
-            return Ok(apps);
+                        return Ok(apps);
         }
 
         [Authorize]

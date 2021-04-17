@@ -7,5 +7,6 @@ namespace API.DTOs
         public string Course { get; set; }
         public int ApplicationStatusId { get; set; }
         public int AppUserId { get; set; }
+        public int TutorId { get; set; }
     }
 }

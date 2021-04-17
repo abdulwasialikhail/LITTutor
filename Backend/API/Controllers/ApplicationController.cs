@@ -80,7 +80,8 @@ namespace API.Controllers
 
             application.Issue = applicationDto.Issue;
             application.Course = applicationDto.Course;
-            application.ApplicationStatusId = 2;
+            application.ApplicationStatusId = 3;
+            application.TutorId = 1;
             application.AppUserId = user.Id;
             user.ApplicationSubmitted = true;
 
@@ -97,6 +98,7 @@ namespace API.Controllers
             // };
             return new UserDto
             {
+                Id = user.Id,
                 UserName = user.UserName,
                 Token = _tokenService.CreateToken(user),
                 FirstName = user.FirstName,
@@ -112,8 +114,8 @@ namespace API.Controllers
         {
             // APPLICATION DTO SHOULD MATCH EXACTLY AS CLIENT SIDE
 
-           // string email = "aoife@gmail.com";
-          // int inputmail = 4;
+            // string email = "aoife@gmail.com";
+            // int inputmail = 4;
             //var acc = new AccountController(_context, _tokenService, _mapper);
 
             var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == applicationDto.UserName);
@@ -121,16 +123,16 @@ namespace API.Controllers
             //user.FirstName = "Aoife";
             // if (await UserExists(registerDto.Email)) return BadRequest("Email already exists");
 
-           // ApplicationDto applicationDto = new ApplicationDto();
+            // ApplicationDto applicationDto = new ApplicationDto();
 
             // var application = _mapper.Map<ApplicationData>(applicationDto);
 
 
             //application.ApplicationStatusId = 1;
-           // application.Id = user.Id;
+            // application.Id = user.Id;
 
             user.ApplicationSubmitted = false;
-            app.ApplicationStatusId = 1;
+            app.ApplicationStatusId = 2;
 
             // _context.Applications.Add(application);
             await _context.SaveChangesAsync();
@@ -148,6 +150,33 @@ namespace API.Controllers
             return Ok();
         }
 
+        [HttpPut("reject")]
+        public async Task<ActionResult> ApplicationReject(CreateApplicationDto applicationDto)
+        {
 
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == applicationDto.UserName);
+            var app = await _context.Applications.SingleOrDefaultAsync(x => x.AppUserId == user.Id);
+            app.ApplicationStatusId = 1;
+
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
+
+        [HttpPut("assign")]
+        public async Task<ActionResult> AssignTutor(AssignTutorDto applicationDto)
+        {
+
+            var user = await _context.Users.SingleOrDefaultAsync(x => x.UserName == applicationDto.StudentEmail);
+            var app = await _context.Applications.SingleOrDefaultAsync(x => x.AppUserId == user.Id);
+            var tutor = await _context.Users.SingleOrDefaultAsync(x => x.UserName == applicationDto.TutorEmail);
+
+            app.TutorId = tutor.Id;
+
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
     }
+
 }

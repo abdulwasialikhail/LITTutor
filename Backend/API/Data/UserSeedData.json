@@ -73,5 +73,30 @@
         ],
         "UserTypeId": 2,
         "ApplicationSubmitted": false
+    },
+    {
+        "UserName": "sam@gmail.com",
+        "FirstName": "Sam",
+        "LastName": "O'Connell",
+        "StudentId": "KK0022002",
+        "Campus": "Moylish",
+        "Course": "Bsc Software Development",
+        "Year": 4,
+        "Email": "sam@gmail.com",
+        "Phone": "0872888188",
+        "DateOfBirth": "1990-06-19",        
+        "Created": "2019-04-19",
+        "LastActive": "2020-06-06",
+        "Gender": "Male",
+        "City": "Dublin",
+        "Country": "Ireland",
+        "Photos": [
+            {
+                "Url": "https://randomuser.me/api/portraits/men/5.jpg",
+                "IsMain": true
+            }
+        ],
+        "UserTypeId": 2,
+        "ApplicationSubmitted": false
     }
 ]

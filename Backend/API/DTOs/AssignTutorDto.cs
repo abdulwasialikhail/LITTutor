@@ -1,10 +1,9 @@
 namespace API.DTOs
 {
-    public class CreateApplicationDto
+    public class AssignTutorDto
     {
-        public string UserName { get; set; }
-        public string Issue { get; set; }
-        public string Course { get; set; }
+        public string StudentEmail { get; set; }
+        public string TutorEmail { get; set; }
         public int ApplicationStatusId { get; set; }
         public int AppUserId { get; set; }
         public int TutorId { get; set; }
