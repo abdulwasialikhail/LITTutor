@@ -2,9 +2,10 @@
   <h1 style="font-family: cursive;" class="mat-display-1">Submitted Applications</h1>
 </div>
 
-<div *ngFor="let student of members$ | async; let i = index">
+<div *ngFor="let student of status let i = index">
+  <div *ngFor="let applications of applicationss">
   
-    <mat-accordion *ngIf="student.applicationSubmitted == true && student.userType == 'Student'">
+    <mat-accordion *ngIf="student.applicationSubmitted == true && student.userType == 'Student' && applications.applicationStatusId==3">
         <mat-expansion-panel  >
           <mat-expansion-panel-header>
             <mat-panel-title style="height: 100%; padding-bottom: 2px;"
@@ -19,19 +20,19 @@
 </mat-panel-title>
           </mat-expansion-panel-header>
 
-          <div *ngFor="let applications of applications$ | async">
+          
           <div *ngIf="applications.appUserId == student.id">
     
             <a class="link" routerLink="{{applications.id}}"> View Application</a>
         </div>
-      </div>
+      
 
         </mat-expansion-panel>
       </mat-accordion>
 
+      <!-- <div *ngIf="bb > 1 && applications.applicationStatusId!=2"  class="isa_success">
+        Currently no student has submitted any applications.
+    </div> -->
 
     </div>
-
-    <div *ngIf="bb < 1"  class="isa_success">
-      Currently no student has submitted any applications.
-  </div>
+    </div>

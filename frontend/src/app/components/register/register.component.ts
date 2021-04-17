@@ -35,7 +35,7 @@ export class RegisterComponent implements OnInit {
       studentId: ['K009876', Validators.required],
       campus: ['Moylish', Validators.required],
       course: ['Software Development', Validators.required],
-      year: [null, [Validators.required, Validators.maxLength(5), Validators.minLength(1)]],
+      year: [0, Validators.required],
       dateOfBirth: ['', Validators.required],
       email: ['ss@mk', Validators.required],
       phone: ['13456' , Validators.required],

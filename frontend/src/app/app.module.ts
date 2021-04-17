@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
+import { TimeagoModule } from 'ngx-timeago';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {ToastrModule} from  'ngx-toastr';
@@ -29,6 +30,13 @@ import { SubmittedApplicationsComponent } from './components/applications/submit
 import { CreateApplicationComponent } from './components/applications/create-application/create-application.component';
 import { ListApplicationsComponent } from './components/applications/list-applications/list-applications.component';
 import { ViewApplicationComponent } from './components/applications/view-application/view-application.component';
+import { AssignTutorComponent } from './components/applications/assign-tutor/assign-tutor.component';
+
+
+import { TabsModule } from 'ngx-bootstrap/tabs';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { MemberMessagesComponent } from './components/members/member-messages/member-messages.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +56,9 @@ import { ViewApplicationComponent } from './components/applications/view-applica
     SubmittedApplicationsComponent,
     CreateApplicationComponent,
     ListApplicationsComponent,
-    ViewApplicationComponent
+    ViewApplicationComponent,
+    AssignTutorComponent,
+    MemberMessagesComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +73,12 @@ import { ViewApplicationComponent } from './components/applications/view-applica
     NgxSpinnerModule,
     ToastrModule.forRoot({
       positionClass: 'toast-bottom-right'
-    })
+    }),
+
+    TabsModule.forRoot(),
+    ButtonsModule.forRoot(),
+    ModalModule.forRoot(),
+    TimeagoModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},

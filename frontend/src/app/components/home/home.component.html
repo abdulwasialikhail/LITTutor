@@ -1,5 +1,5 @@
 <div *ngIf="member">
-  <div *ngIf="application">
+  
 <div class="page-title">
   <h1 class="mat-display-3">Welcome to Learning Support unit</h1>
 </div>
@@ -12,25 +12,31 @@
   <div class="mat-display-1" *ngIf="user.userType == 2">
     <p>Hello Tutor</p>
   </div>
+  
 
   <div *ngIf="user.userType == 3 && user.checkEmail == member.email">
     <p class="mat-display-2">Hello Student</p>
-     
+    <!-- <div *ngIf="member.applicationSubmitted == false" class="isa_info mat-display-1"> 
+    <p>You have not submitted any application yet, click <a routerLink="/home/application">here</a> to make one!</p>
+  </div> -->
+  
+    <div *ngIf="application">
       <div class="isa_info mat-display-1"
-        *ngIf="application.applicationStatusId == 3">
+        *ngIf="application.applicationStatusId == 4">
         <p >You have not submitted any application yet, click <a routerLink="/home/application">here</a> to make one!</p>
       </div>
       <div class="isa_info mat-display-1"
-        *ngIf="application.applicationStatusId == 2">
+        *ngIf="application.applicationStatusId == 3">
         <p>Please be patient your application is under review.</p>
       </div>
-      <div class="isa_success"
-        *ngIf="application.applicationStatusId == 1">
-        <h1>Congratulations! your application has been approved.</h1>
+      <div class="isa_success mat-display-1"
+        *ngIf="application.applicationStatusId == 2">
+        <p>Congratulations! your application has been approved.</p>
+        <p *ngIf="application.appUserId == user.id">{{application.tutorId}}</p>
       </div>
       <div class="isa_error mat-display-1"
-      *ngIf="!application.applicationStatusId">
-      <p>Congratulations! your application has been approved.</p>
+      *ngIf="application.applicationStatusId == 1">
+      <p>Your application has been <span>rejected.</span> Please contact Learning Support Unit for more information.</p>
     </div>
 
     </div>

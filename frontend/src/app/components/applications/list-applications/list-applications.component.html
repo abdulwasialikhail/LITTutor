@@ -1,1 +1,1 @@
-<p>list-applications works!</p>
+<p *ngIf="(accountService.currentUser$ | async) as user" >{{user.id}}</p>

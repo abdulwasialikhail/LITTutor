@@ -18,7 +18,10 @@ export class ViewApplicationComponent implements OnInit {
   application: Application;
   validationErrors: string[];
   applicationForm: FormGroup;
+  assignTutorForm: FormGroup;
   members$: Observable<Member[]>;
+  selectedValue: string;
+  //applications: Application[];
 
   constructor(private toastr: ToastrService, private router: Router,
     private fb: FormBuilder, public accountService: AccountsService,
@@ -28,6 +31,7 @@ export class ViewApplicationComponent implements OnInit {
     this.members$ = this.memberService.getMembers();
     this.loadApplication();
     this.initializeForm();
+    this.assignForm();
   }
 
   loadApplication() {
@@ -45,11 +49,18 @@ export class ViewApplicationComponent implements OnInit {
     });
   }
 
+  assignForm() {
+    this.assignTutorForm = this.fb.group({
+      //id: [{ value: null, disabled: true }, Validators.required],
+      studentEmail: [{ value: '' }, Validators.required],
+      tutorEmail: [{ value: '' }, Validators.required]
+    });
+  }
 
-
-  approve(): void {
-    this.accountService.approveApplication(this.applicationForm.getRawValue()).subscribe(response => {
-      this.router.navigateByUrl("/home/applications");
+  approve() {
+    this.accountService.approveApplication(this.applicationForm.getRawValue()).subscribe(() => {
+      //this.loadApplications();
+      this.router.navigateByUrl("/home/applications").then(() => {window.location.reload()});
       this.toastr.success("Application Approved Successfully!");
       //this.memberService.getApplications();
 
@@ -60,17 +71,26 @@ export class ViewApplicationComponent implements OnInit {
       //   });
     });
   }
+  reject(): void {
+    this.accountService.rejectApplication(this.applicationForm.getRawValue()).subscribe(() => {
+      //this.loadApplications();
+      this.router.navigateByUrl("/home/applications").then(() => {window.location.reload()});
+      //this.loadApplications();
+      this.toastr.success("Application Rejected Successfully!");
+    });
+  }
 
-  // loadMember() {
-  //   this.memberService.getMember(this.route.snapshot.paramMap.get('username')).subscribe(member => {
-  //     this.member = member;
+  assign(): void {
+    this.accountService.assignTutor(this.assignTutorForm.getRawValue()).subscribe(response => {
+      //this.loadApplications();
+      this.router.navigateByUrl("/home").then(() => {window.location.reload()});
+      this.toastr.success("Tutor Assigend Successfully!");
+    });
+  }
+
+  // public loadApplications() {
+  //   this.memberService.getApplications().subscribe(application => {
+  //     this.applications = application;
   //   })
   // }
-
-  // loadMember() {
-  //   this.memberService.getMember(this.route.snapshot.paramMap.get('username')).subscribe(member => {
-  //     this.member = member;
-  //   })
-  // }
-
 }

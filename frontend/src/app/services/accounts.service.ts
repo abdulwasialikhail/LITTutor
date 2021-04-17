@@ -65,6 +65,14 @@ export class AccountsService {
     );
   }
 
+  rejectApplication(model: any) {
+    return this.http.put(this.baseUrl + 'application/reject', model);
+  }
+
+  assignTutor(model: any) {
+    return this.http.put(this.baseUrl + 'application/assign', model);
+  }
+
   setCurrentUser(user: User) {
     this.currentUserSource.next(user);
   }

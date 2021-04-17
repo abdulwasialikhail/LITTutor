@@ -4,4 +4,5 @@ export interface Application {
     course: string;
     applicationStatusId: number;
     appUserId: number;
+    tutorId: number;
 }

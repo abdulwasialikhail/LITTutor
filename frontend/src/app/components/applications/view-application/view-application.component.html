@@ -35,9 +35,38 @@
                     </form>
                 </mat-card-content>
             </mat-card-content>
+            <mat-card-content *ngFor="let student of members$ | async">
+
+
+                <mat-card-content *ngIf="student.id == application.appUserId && application.applicationStatusId == 2">
+                    <form [formGroup]='assignTutorForm'>
+
+                        <div class="cdk-visually-hidden">
+                            <mat-form-field  class="cdk-visually-hidden">
+                                <mat-label>Username</mat-label>
+                                <input matInput formControlName='studentEmail' [(ngModel)]="student.username" readonly>
+                            </mat-form-field>
+                        </div>
+
+                        <mat-form-field appearance="fill">
+                            <mat-label>Select Tutor</mat-label>
+                            <mat-select formControlName='tutorEmail'>
+                                <div *ngFor="let tutor of members$ | async">
+                              <mat-option *ngIf="tutor.userType == 'Tutor'"  [value]="tutor.username">
+                                  <div >
+                                {{tutor.username}}
+                            </div>
+                              </mat-option>
+                            </div>
+                            </mat-select>
+                          </mat-form-field>
+                    </form>
+                </mat-card-content>
+            </mat-card-content>
             <mat-card-actions>
-                <button mat-raised-button (click)="approve()" color="primary">Approve Application</button>
-                <button mat-raised-button color="warn" >Reject Application</button>
+                <button *ngIf="application.applicationStatusId == 3" mat-raised-button (click)="approve()" color="primary">Approve Application</button>
+                <button *ngIf="application.applicationStatusId == 2" mat-raised-button (click)="assign()" color="primary">Assign Tutor</button>
+                <button *ngIf="application.applicationStatusId == 3" mat-raised-button (click)="reject()" color="warn" >Reject Application</button>
                 <button routerLink="/home/applications" mat-raised-button>Cancel</button>
             </mat-card-actions>
         </mat-card>

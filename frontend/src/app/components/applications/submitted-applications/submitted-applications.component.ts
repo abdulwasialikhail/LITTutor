@@ -15,48 +15,48 @@ import { FormBuilder, Validators, FormGroup, NgForm } from '@angular/forms';
 })
 export class SubmittedApplicationsComponent implements OnInit {
   @ViewChild('approvalForm') approvalForm: NgForm;
-  members$: Observable<Member []>;
-  applications$: Observable<Application []>;
-  applications: Application[];
+  //members$: Observable<Member[]>;
+  //applications$: Observable<Application[]>;
+  applicationss: Application[];
   checkStatus: number;
   status: Member[];
-  arraySize: [];
+  //arraySize: [];
   applicationForm: FormGroup;
   //model: any;
   myError: boolean = true;
   bb: number = 0;
-  model: any = {};
-  email = "aoife@gmail.com";
+  //model: any = {};
+  //email = "aoife@gmail.com";
 
-  constructor(private toastr: ToastrService, private router: Router, 
+  constructor(private toastr: ToastrService, private router: Router,
     private fb: FormBuilder, public accountService: AccountsService, private memberService: MembersService) { }
 
   ngOnInit(): void {
-     this.members$ = this.memberService.getMembers();
-    this.applications$ = this.memberService.getApplications();
-   
-   this.loadApplications();
-   this.loadMembers();
-    this.initializeForm();
+    //this.members$ = this.memberService.getMembers();
+    //this.applications$ = this.memberService.getApplications();
+
+    this.loadApplications();
+    this.loadMembers();
+    //this.initializeForm();
     console.log(this.bb);
   }
 
-  applicationUrl(id: number) {
-    return `/home/applications/${id}`;
-  }
+  // applicationUrl(id: number) {
+  //   return `/home/applications/${id}`;
+  // }
 
-  initializeForm() {
-    this.applicationForm = this.fb.group ({
-      issue: ['', Validators.required],
-      course: ['', Validators.required],
-      username: ['', Validators.required],
-      
-    });
-  }
+  // initializeForm() {
+  //   this.applicationForm = this.fb.group({
+  //     issue: ['', Validators.required],
+  //     course: ['', Validators.required],
+  //     username: ['', Validators.required],
 
-  loadApplications() {
+  //   });
+  // }
+
+  public loadApplications() {
     this.memberService.getApplications().subscribe(application => {
-      this.applications = application;
+      this.applicationss = application;
     })
   }
 
@@ -64,34 +64,15 @@ export class SubmittedApplicationsComponent implements OnInit {
     this.memberService.getMembers().subscribe(member => {
       this.status = member;
       //console.log(this.status.length);
-      this.status.forEach(c => {if (c.applicationSubmitted === true && c.userType === "Student") {
-        this.bb++;
-        this.myError=false;
-       console.log(this.bb);
-       console.log(this.myError);
-      }
-    });
-      // for (const st of this.status) {
-        
-      //   if (st.applicationSubmitted === true && st.userType === "Student") {
-      //    // this.myError=false;
-      //    // this.bb = 9;
-      //    // console.log(this.bb);
-      //   } else {
-      //    // this.bb = 6;
-      //     //console.log(this.bb);
-      //   }
-        
-      // }
+      this.status.forEach(c => {
+        if (c.applicationSubmitted === false && c.userType === "Student") {
+          this.bb++;
+          this.myError = false;
+          console.log(this.bb);
+          console.log(this.myError);
+        }
+      });
     })
   }
-  
-  approve(): void {
-    this.accountService.approveApplication(this.model).subscribe( response => {
-      this.router.navigateByUrl("/home");
-      this.toastr.success("Application Approved Successfully!");
-    });
-  }
-
 
 }
