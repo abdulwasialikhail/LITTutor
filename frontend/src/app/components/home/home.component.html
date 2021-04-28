@@ -1,8 +1,86 @@
 <div *ngIf="member">
-  
+<div>
+  <img src="./assets/LIT.png" style="width: 300px; height: 100px; float: left;">
 <div class="page-title">
-  <h1 class="mat-display-3">Welcome to Learning Support unit</h1>
+  <h1 class="display-5">Welcome to Learning Support unit</h1>
 </div>
+</div>
+<div style="background-image: url(./assets/cover.jpg); background-size: cover;">
+<h1 class="display-4 bolds" style="margin-left: 50px; color:beige; width: 1050px; background-color: rgba(0,0,0,.5);">Supporting Your Learning Experience</h1>
+
+
+<mat-card style="width: 300px; margin-top: 60px; margin-right: 60px; float: right;" class="mat-elevation-z4 car">
+  <mat-card-header>
+      <mat-card-title style="font-weight: bolder; font-size: 20px">Acess LIT</mat-card-title>
+  </mat-card-header>
+  <div class="image-wrapper">
+  <a href="https://lit.ie/oncampus" target="_blank"><img mat-card-image src="./assets/lit.png" alt="Photo of LIT" style="height: 170px;"></a>
+</div>
+  <mat-card-content>
+      <p ><a href="https://lit.ie/oncampus" target="_blank">
+          > Continue Reading
+          </a>
+      </p>
+  </mat-card-content>
+  <mat-card-actions style="margin-bottom: 10px; margin-left: 10px;">
+  </mat-card-actions>
+</mat-card>
+
+<mat-card style="width: 300px; margin-top: 60px; margin-right: 60px; float: right;" class="mat-elevation-z4 car">
+  <mat-card-header>
+      <mat-card-title style="font-weight: bolder; font-size: 20px">Life at LSU</mat-card-title>
+  </mat-card-header>
+  <div class="image-wrapper">
+  <a href="/" target="_blank"><img mat-card-image src="./assets/students-life-spain.jpg" alt="Photo of LIT"></a>
+</div>
+  <mat-card-content>
+      <p ><a href="/" target="_blank">
+          > Continue Reading
+          </a>
+      </p>
+  </mat-card-content>
+  <mat-card-actions style="margin-bottom: 10px; margin-left: 10px;">
+  </mat-card-actions>
+</mat-card>
+
+<mat-card style="width: 300px; margin-top: 60px; margin-right: 60px; float: right;" class="mat-elevation-z4 car">
+  <mat-card-header>
+      <mat-card-title style="font-weight: bolder; font-size: 20px">COVID-19 Info</mat-card-title>
+  </mat-card-header>
+  <div class="image-wrapper">
+  <a href="https://lit.ie/life-at-lit/admissions-support/student-health/covid-19-updates" target="_blank"><img mat-card-image src="./assets/COVID_19.jpg" alt="Photo of LIT" style="height: 170px;"></a>
+</div>
+  <mat-card-content>
+      <p ><a href="https://lit.ie/life-at-lit/admissions-support/student-health/covid-19-updates" target="_blank">
+          > Continue Reading
+          </a>
+      </p>
+  </mat-card-content>
+  <mat-card-actions style="margin-bottom: 10px; margin-left: 10px;">
+  </mat-card-actions>
+</mat-card>
+
+
+
+
+<mat-card style="width: 300px; margin-top: 70px; margin-left: 60px;" >
+  <mat-card-header>
+      <mat-card-title style="font-weight: bolder; font-size: 20px">Stay Safe at LIT</mat-card-title>
+  </mat-card-header>
+  <div class="image-wrapper">
+  <a href="https://lit.ie/oncampus" target="_blank"><img mat-card-image src="./assets/safe.jpg" alt="Photo of LIT"></a>
+</div>
+  <mat-card-content>
+      <p ><a href="https://lit.ie/oncampus" target="_blank">
+          > Continue Reading
+          </a>
+      </p>
+  </mat-card-content>
+  <mat-card-actions style="margin-bottom: 10px; margin-left: 10px;">
+  </mat-card-actions>
+</mat-card>
+</div>
+
 <div *ngIf="(accountService.currentUser$ | async) as user">
   <div>
   <div class="mat-display-1" *ngIf="user.userType == 1">
@@ -10,22 +88,30 @@
   </div>
 
   <div class="mat-display-1" *ngIf="user.userType == 2">
-    <p>Hello Tutor</p>
+    <p class="mat-h1 mat-headline" style="margin-top: 50px;">Hello Tutor</p>
+    <p class="mat-h1 mat-headline">A Tutor helps students complete assignments, develop relevant skills and better understand the curriculum outside the classroom. Some Tutors work one-on-one with students while others teach a small group of children during a tutoring session. They usually work with children to improve their academic outcomes, but Tutors can assist students of all ages in a variety of subjects. They usually specialize in a particular subject or range of topics. These education professionals can work in schools, tutoring centers, universities or other community or educational institutions, providing valuable help that complements in-classroom instruction and promotes ongoing learning and self-confidence.    
+    For more information please <a href="/home/members/sysadmin@lit.ie">CLICK HERE</a> to contact Learning Support Unit.</p>
   </div>
   
 
   <div *ngIf="user.userType == 3 && user.checkEmail == member.email">
-    <p class="mat-display-2">Hello Student</p>
+    <p class="mat-h1 mat-headline" style="margin-top: 50px;">Hello Student</p>
     <!-- <div *ngIf="member.applicationSubmitted == false" class="isa_info mat-display-1"> 
     <p>You have not submitted any application yet, click <a routerLink="/home/application">here</a> to make one!</p>
   </div> -->
+
+  <p class="subheading-2">The Learning Support Unit provides free academic support to all registered LIT students on request. All services are based on a supervised self-help model involving tutors and students. Tutorial support is available by application.
+
+    Workshops such as, Study Skills, Time Management, Exam Preparation, Maths and Academic Writing can be organised by contacting us directly. We also provide English language support classes for International students.
+    
+    For more information please <a href="/home/members/sysadmin@lit.ie">CLICK HERE</a> to contact Learning Support Unit.</p>
   
     <div *ngIf="application">
       <div class="isa_info mat-display-1"
         *ngIf="application.applicationStatusId == 4">
         <p >You have not submitted any application yet, click <a routerLink="/home/application">here</a> to make one!</p>
       </div>
-      <div class="isa_info mat-display-1"
+      <div class="isa_info"
         *ngIf="application.applicationStatusId == 3">
         <p>Please be patient your application is under review.</p>
       </div>

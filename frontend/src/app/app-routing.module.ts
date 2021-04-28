@@ -17,6 +17,7 @@ import { SubmittedApplicationsComponent } from './components/applications/submit
 import { ViewApplicationComponent } from './components/applications/view-application/view-application.component';
 import { AssignTutorComponent } from './components/applications/assign-tutor/assign-tutor.component';
 import { ListApplicationsComponent } from './components/applications/list-applications/list-applications.component';
+import { ViewWorkshopsComponent } from './components/view-workshops/view-workshops.component';
 
 const routes: Routes = [
   
@@ -71,6 +72,10 @@ const routes: Routes = [
       {
         path: 'assignTutor',
         component: AssignTutorComponent
+      },
+      {
+        path: 'workshops',
+        component: ViewWorkshopsComponent
       },
       {
         path: 'listApplications',

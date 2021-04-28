@@ -14,7 +14,10 @@
             <input
             name="username"
             [(ngModel)]="model.username"
-             matInput placeholder="Username">
+             matInput placeholder="Username" required>
+             <mat-error>
+              Username is required
+            </mat-error>
           </mat-form-field>
   
           <mat-form-field class="example-full-width">
@@ -22,7 +25,10 @@
             name="password"
             [(ngModel)]="model.password"
             type="password"
-            matInput placeholder="Password">
+            matInput placeholder="Password" required>
+            <mat-error>
+              Password is required
+            </mat-error>
           </mat-form-field>
         </mat-card-content>
         <button mat-raised-button color="accent" class="btn-block">Log in</button>

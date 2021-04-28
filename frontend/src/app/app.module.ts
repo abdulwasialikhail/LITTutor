@@ -37,6 +37,7 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { MemberMessagesComponent } from './components/members/member-messages/member-messages.component';
+import { ViewWorkshopsComponent } from './components/view-workshops/view-workshops.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +59,8 @@ import { MemberMessagesComponent } from './components/members/member-messages/me
     ListApplicationsComponent,
     ViewApplicationComponent,
     AssignTutorComponent,
-    MemberMessagesComponent
+    MemberMessagesComponent,
+    ViewWorkshopsComponent
   ],
   imports: [
     BrowserModule,
