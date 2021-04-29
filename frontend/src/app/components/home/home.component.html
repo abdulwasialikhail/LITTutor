@@ -117,15 +117,14 @@
       </div>
       <div class="isa_success mat-display-1"
         *ngIf="application.applicationStatusId == 2 && application.appUserId == user.id">
-        <p>Congratulations! your application has been approved. Please check your messages to see your assigned tutor.
+        <p>Congratulations! your application has been approved. Soon, further instructions regarding your application will be messaged to you.
         </p>
         <!-- <p *ngIf="application.appUserId == user.id">{{application.tutorId}}</p> -->
       </div>
       <div class="isa_error mat-display-1"
       *ngIf="application.appUserId == user.id && application.applicationStatusId == 1">
-      <p>Your application has been <span>rejected.</span> Please contact Learning Support Unit for more information.</p>
+      <p>We are sorry to inform you that your application has been <span>rejected.</span> Please contact Learning Support Unit for more information.</p>
     </div>
-
     </div>
 </div>
 </div>
