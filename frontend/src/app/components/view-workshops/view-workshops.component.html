@@ -1,4 +1,8 @@
-<h1 style="margin-top: 150px;"> Academic Writing</h1>
+<div *ngIf="(accountService.currentUser$ | async) as user">
+<button *ngIf="user.userType == 1" style="margin-top: 100px;" mat-raised-button color="accent">Add Workshop</button>
+<button *ngIf="user.userType == 1" style="margin-left: 20px;" mat-raised-button color="warn">Remove Workshop</button>
+</div>
+<h1 style="margin-top: 50px;"> Academic Writing</h1>
 <table class="styled-table" cellpadding="0" cellspacing="0" style="width:718px;" width="718">
 	<tbody>
 		<tr>

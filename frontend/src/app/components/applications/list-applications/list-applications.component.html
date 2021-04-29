@@ -1,1 +1,30 @@
-<p *ngIf="(accountService.currentUser$ | async) as user" >{{user.id}}</p>
+<div *ngIf="(accountService.currentUser$ | async) as user" >
+
+<div class="page-title">
+    <h1 style="font-family: cursive;" class="mat-display-1">My Students</h1>
+</div>
+
+<div *ngFor="let student of members$ | async; let i = index">
+    <div *ngFor="let applications of applications$ | async">
+
+        <mat-accordion
+            *ngIf="student.id == applications.appUserId && student.userType == 'Student' && applications.applicationStatusId==2 && applications.tutorId == user.id">
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title style="height: 100%; padding-bottom: 2px;" fxLayout="row" fxLayout.lt-lg="column"
+                        fxLayoutAlign="center" fxLayoutGap="10px" fxLayoutGap.lte-md="0">
+                        <div fxFlex="20%">{{ student.firstName + " " + student.lastName}}</div>
+                        <div fxFlex="60%" class="text-lowercase">{{ student.studentId }}</div>
+                        <div fxFlex="20%">{{student.phone }}</div>
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div *ngIf="applications.appUserId == student.id">
+    
+                    <a class="link" routerLink="/home/members/{{student.email}}"> View Profile</a>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+
+    </div>
+</div>
+</div>

@@ -112,16 +112,17 @@
         <p >You have not submitted any application yet, click <a routerLink="/home/application">here</a> to make one!</p>
       </div>
       <div class="isa_info"
-        *ngIf="application.applicationStatusId == 3">
+        *ngIf="application.applicationStatusId == 3 && application.appUserId == user.id">
         <p>Please be patient your application is under review.</p>
       </div>
       <div class="isa_success mat-display-1"
-        *ngIf="application.applicationStatusId == 2">
-        <p>Congratulations! your application has been approved.</p>
+        *ngIf="application.applicationStatusId == 2 && application.appUserId == user.id">
+        <p>Congratulations! your application has been approved. Please check your messages to see your assigned tutor.
+        </p>
         <!-- <p *ngIf="application.appUserId == user.id">{{application.tutorId}}</p> -->
       </div>
       <div class="isa_error mat-display-1"
-      *ngIf="application.applicationStatusId == 1">
+      *ngIf="application.appUserId == user.id && application.applicationStatusId == 1">
       <p>Your application has been <span>rejected.</span> Please contact Learning Support Unit for more information.</p>
     </div>
 

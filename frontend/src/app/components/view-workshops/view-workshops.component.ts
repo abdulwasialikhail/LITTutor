@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AccountsService } from 'src/app/services/accounts.service';
 
 @Component({
   selector: 'app-view-workshops',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ViewWorkshopsComponent implements OnInit {
 
-  constructor() { }
+  constructor( public accountService: AccountsService) { }
 
   ngOnInit(): void {
   }

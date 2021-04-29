@@ -24,7 +24,7 @@ namespace API.Data
         public async Task<ApplicationDto> GetApplicationByIdAsync(int id)
         {
             return await _context.Applications
-            .Where(x => x.Id == id)
+            .Where(x => x.AppUserId == id)
             .ProjectTo<ApplicationDto>(_mapper.ConfigurationProvider)
             .SingleOrDefaultAsync();
 

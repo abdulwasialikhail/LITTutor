@@ -17,20 +17,20 @@
 
         <mat-card-content>
 
-            <mat-card-content>
+            <mat-card-content style="margin: 20px;">
                 <form [formGroup]='applicationForm'>
                     <mat-form-field class="full-width titleMargin">
-                        <mat-label>Issue</mat-label>
+                        <mat-label>Description of Issue</mat-label>
                         <input matInput formControlName='issue' placeholder="Issue" required>
                         <mat-error>
                             Issue is required
                         </mat-error>
                     </mat-form-field>
                     <mat-form-field class="full-width">
-                        <mat-label>Course</mat-label>
+                        <mat-label>Subject of Difficulty</mat-label>
                         <input matInput formControlName='course' placeholder="Course" required>
                         <mat-error>
-                            Course is required
+                            Subject is required
                         </mat-error>
                     </mat-form-field>
                     <div class="cdk-visually-hidden" *ngIf="(accountService.currentUser$ | async) as user">
@@ -42,10 +42,9 @@
                 </form>
             </mat-card-content>
         </mat-card-content>
-        <mat-card-actions>
+        <mat-card-actions style="margin: 10px;;">
             <button mat-raised-button (click)="application()" color="primary">Create Application</button>
             <button routerLink="/home/welcome" mat-raised-button>Cancel</button>
-
         </mat-card-actions>
     </mat-card>
 </div>
